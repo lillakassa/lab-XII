@@ -44,14 +44,13 @@ In this case the head pointer changes, so it must be handled like in the previou
 
 #6:
 Create a function that takes a list and an integer value parameter. 
-Return a pointer to the first such element of the list that contains the received integer. 
+Return a pointer to the first such element of the list that contains the received integeh){r. 
 Return NULL if there is no such element.
 */
 
-
+#include <stdio.h>
 #include <stdlib.h>
-
-typedef struct ListEl {
+typedef struct ListEl{
     int data;
     struct ListEl *nxt;
 } ListEl;
@@ -73,14 +72,41 @@ ListEl *list_build(void) {
     }
     return lis;
 }
+int Counter(ListEl * head){
+    ListEl *c=head;
+    int h=0;
+    for (int i=0;c->nxt!=NULL; i++){
+        c=c->nxt;
+        h++;
+    }
+    return h;
+}
+void Deleter(ListEl* head){
+    ListEl *d=head;
+    for(;d!= NULL; head=d){
+        d=head->nxt;
+        free(head);
+    }
 
+}
+ListEl*st_insert_athead(ListEl *head, int x){
+    ListEl* h=malloc(sizeof (ListEl));
+    h-> data= x;
+    h-> nxt=head;
+    return h;
+}
 
 int main(void) {
     ListEl *head;
     
     head = list_build();
+    ListEl * c=head;
+    for(int i=0;c->nxt!=NULL; i++){
+        printf("%d ", c->data);
+        c=c->nxt;
+    }
     
-    //here print the list!
-    
+
+
     return 0;   
 }
